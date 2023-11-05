@@ -1,6 +1,6 @@
 name: 'use-efmt'
 author: 'bunopnu'
-description: 'Utilise efmt in your GitHub Actions'
+description: 'Use efmt inside your GitHub actions'
 
 branding:
   color: 'purple'
