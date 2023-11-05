@@ -1,0 +1,28 @@
+name: 'use-efmt'
+author: 'bunopnu'
+description: 'Utilise efmt in your GitHub Actions'
+
+branding:
+  color: 'purple'
+  icon: 'box'
+
+inputs:
+  version:
+    description: 'Version to install'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - id: pre-install-efmt
+      run: |
+        set -e
+        mkdir $HOME/efmt-bin
+        echo "$HOME/efmt-bin" >> $GITHUB_PATH
+      shell: bash
+    - id: install-efmt
+      run: |
+        set -e
+        curl -L https://github.com/sile/efmt/releases/download/${{ inputs.version }}/efmt-${{ inputs.version }}.x86_64-unknown-linux-musl -o $HOME/efmt-bin/efmt
+        chmod +x $HOME/efmt-bin/efmt
+      shell: bash
