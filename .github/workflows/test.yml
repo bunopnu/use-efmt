@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: "bunopnu/captcherl"
+          ref: "v0.1.0"
+
+      - uses: bunopnu/use-efmt@v1.0.0
+        with:
+          version: "0.14.1"
+
+      - name: Print Version
+        run: efmt --version
+
+      - name: Check Formatting
+        run: efmt --check
