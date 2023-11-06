@@ -10,6 +10,10 @@ inputs:
   version:
     description: 'Version to install'
     required: true
+  file:
+    description: 'Binary name (efmt by default)'
+    required: false
+    default: 'efmt'
 
 runs:
   using: "composite"
@@ -23,6 +27,6 @@ runs:
     - id: install-efmt
       run: |
         set -e
-        curl -L https://github.com/sile/efmt/releases/download/${{ inputs.version }}/efmt-${{ inputs.version }}.x86_64-unknown-linux-musl -o $HOME/efmt-bin/efmt
-        chmod +x $HOME/efmt-bin/efmt
+        curl -L https://github.com/sile/efmt/releases/download/${{ inputs.version }}/efmt-${{ inputs.version }}.x86_64-unknown-linux-musl -o $HOME/efmt-bin/${{ inputs.file }}
+        chmod +x $HOME/efmt-bin/${{ inputs.file }}
       shell: bash
